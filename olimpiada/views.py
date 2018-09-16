@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+from django.http import HttpResponse, JsonResponse
+from rest_framework import permissions
 
 from .models import Atleta, Competicao, Fase, Olimpiada, Resultado
-from .serializers import AtletaSerializer, CompeticaoSerializer, FaseSerializer, OlimpiadaSerializer, ResultadoSerializer
+from .serializers import AtletaSerializer, CompeticaoSerializer, FaseSerializer, OlimpiadaSerializer, ResultadoSerializer, RankingSerializer
 
 
 class AtletaViewSet(viewsets.ModelViewSet):
@@ -40,3 +42,14 @@ class ResultadoViewSet(viewsets.ModelViewSet):
     """
     queryset = Resultado.objects.all()
     serializer_class = ResultadoSerializer
+
+#@api_view(['GET'])
+def ranking_v1(request, olimpiada, competicao, modalidade, fase):
+    queryset = Resultado.objects.filter(
+        olimpiada=olimpiada,
+        competicao=competicao,
+        competicao__modalidade=modalidade,
+        fase = fase
+    ).all()
+    serializer = RankingSerializer(queryset, many=True)
+    return JsonResponse(serializer.data, safe=False)

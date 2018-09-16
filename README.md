@@ -26,3 +26,6 @@ http://localhost:8000/api/v1/olimpiada/atletas/
 $ http --auth user:pass POST http://127.0.0.1:8000/api/v1/olimpiada/olimpiadas/ nome="Olimpiadas do Faustao" inicio_data="1978-12-28 12:00" final_data="2018-12-30 00:00"
 Ou acessar o endpoint: 
 http://localhost:8000/api/v1/olimpiada/olimpiadas/
+
+### Ranking
+http://localhost:8000/api/v1/olimpiada/1/competicao/3/modalidade/M/fase/1/
