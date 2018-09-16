@@ -14,44 +14,32 @@ from .serializers import AtletaSerializer, CompeticaoSerializer, FaseSerializer,
 
 
 class AtletaViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
     queryset = Atleta.objects.all().order_by("nome")
     serializer_class = AtletaSerializer
 
 class CompeticaoViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
     queryset = Competicao.objects.all().order_by("nome")
     serializer_class = CompeticaoSerializer
 
 class FaseViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
     queryset = Fase.objects.all().order_by("nome")
     serializer_class = FaseSerializer
 
 
 class OlimpiadaViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
     queryset = Olimpiada.objects.all()
     serializer_class = OlimpiadaSerializer
 
 class ResultadoViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
     queryset = Resultado.objects.all()
     serializer_class = ResultadoSerializer
 
 @api_view(['GET'])
 def ranking_v1(request, olimpiada, competicao, modalidade, fase):
-
+    """
+    View que retorna o ranking de uma competição durante uma olimpiada.
+    Os registros já vem ordenados pela posição, entao o registro "0" é a primeira posição
+    """
     competicao = get_object_or_404(Competicao, pk=competicao)
     olimpiada = get_object_or_404(Olimpiada, pk=olimpiada)
     fase = get_object_or_404(Fase, pk=fase)
@@ -63,10 +51,10 @@ def ranking_v1(request, olimpiada, competicao, modalidade, fase):
         fase = fase
     ).values('atleta')
     
-    if competicao.criterio_pontuacao == 0:        
-        queryset = queryset.annotate(valor_final=Min('valor'))
-    elif competicao.criterio_pontuacao == 1:        
-        queryset = queryset.annotate(valor_final=Max('valor'))
+    if competicao.criterio_pontuacao == 0:
+        queryset = queryset.annotate(valor_final=Min('valor')).order_by("valor_final")
+    elif competicao.criterio_pontuacao == 1:
+        queryset = queryset.annotate(valor_final=Max('valor')).order_by("-valor_final")
 
     status_resultado = "Resultado Parcial"
     if timezone.now()>olimpiada.final_data:
@@ -84,10 +72,10 @@ def ranking_v1(request, olimpiada, competicao, modalidade, fase):
     ranking = RankingSerializer(queryset, many=True)
 
 
-    saida = '{ "olimpiada":' + json.dumps(olimpiada.data) + ','
-    saida += '"competicao": ' + json.dumps(competicao.data) + ','
-    saida += '"fase":' + json.dumps(fase.data) + ','
-    saida += '"resultado_status":' + json.dumps(status_resultado) + ','
-    saida += '"ranking": ' + json.dumps(ranking.data) + '}'
+    saida_json = '{ "olimpiada":' + json.dumps(olimpiada.data) + ','
+    saida_json += '"competicao": ' + json.dumps(competicao.data) + ','
+    saida_json += '"fase":' + json.dumps(fase.data) + ','
+    saida_json += '"resultado_status":' + json.dumps(status_resultado) + ','
+    saida_json += '"ranking": ' + json.dumps(ranking.data) + '}'
 
-    return HttpResponse(saida, content_type="application/json")
+    return HttpResponse(saida_json, content_type="application/json")

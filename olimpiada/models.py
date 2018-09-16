@@ -26,7 +26,6 @@ class Atleta(models.Model):
 		return self.nome + ' ' + self.sobrenome 
 
 class Competicao(models.Model):
-	""" Competicao """
 	MODALIDADE = (
     	('M', 'Masculino'),
     	('F', 'Feminino'),
@@ -107,10 +106,13 @@ class Resultado(models.Model):
 		'Fase',
 		on_delete=models.CASCADE,
 	)
-	valor = models.IntegerField()
+	valor = models.DecimalField(max_digits=8, decimal_places=3)
 
 	def clean(self):
-		""" Validacao das regras dos resultados """
+		"""
+		Validacao importante das regras dos resultados. 
+		Colabora para os dados permanecerem íntegros
+		"""
 		if timezone.now()<self.olimpiada.inicio_data:
 			raise ValidationError('Essa Olimpíada ainda não começou')
 

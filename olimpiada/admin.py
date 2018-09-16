@@ -12,6 +12,8 @@ class ResultadoAdmin(admin.ModelAdmin):
 	list_filter=('olimpiada','competicao','fase')
 	list_display=('atleta','valor','competicao','fase')
 
+admin.site.site_header = 'Desafio EV / Fabricio'
+
 admin.site.register(Atleta)
 admin.site.register(Competicao, CompeticaoAdmin)
 admin.site.register(Fase)
