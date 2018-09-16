@@ -1,13 +1,11 @@
-from django.shortcuts import render
-from rest_framework import viewsets
-from django.http import HttpResponse, JsonResponse
-from rest_framework.views import APIView
-from rest_framework.decorators import api_view
 from django.db.models import Max, Min
-from django.shortcuts import get_object_or_404
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
+from rest_framework import viewsets
+from rest_framework.decorators import api_view
+from rest_framework.views import APIView
 import json
-
 
 from .models import Atleta, Competicao, Fase, Olimpiada, Resultado
 from .serializers import AtletaSerializer, CompeticaoSerializer, FaseSerializer, OlimpiadaSerializer, ResultadoSerializer, RankingSerializer
