@@ -1,8 +1,9 @@
 from django.db import models
-
 from datetime import datetime
+from django.utils import timezone
+from django.core.exceptions import ValidationError
 
-# Create your models here.
+
 class Atleta(models.Model):
 	SEXO = (
     	('M', 'Masculino'),
@@ -52,7 +53,6 @@ class Competicao(models.Model):
 		max_length=2,
 		choices=UNIDADE,
 		default='m'
-
 	)
 	criterio_pontuacao = models.PositiveSmallIntegerField(
 		choices=CRITERIO,
@@ -61,9 +61,16 @@ class Competicao(models.Model):
 	tentativas = models.PositiveSmallIntegerField(default=1)
 
 	def __str__(self):
-		return self.nome
+		return self.nome + ' (' + self.modalidade + ')'
+	
 	class Meta:
 		verbose_name_plural = "Competições"
+		unique_together=("nome", "modalidade")
+
+	def clean(self):
+		if self.final_data<self.inicio_data:
+			raise ValidationError('Data final menor que a data inicial')					
+
 	
 class Fase(models.Model):
 	nome = models.CharField(max_length=90)
@@ -72,12 +79,16 @@ class Fase(models.Model):
 
 class Olimpiada(models.Model):
 	""" Olimpiada """
-	nome = models.CharField(max_length=150)
+	nome = models.CharField(max_length=150, unique=True)
 	inicio_data = models.DateTimeField()
 	final_data= models.DateTimeField()
 
 	def __str__(self):
 		return self.nome
+
+	def clean(self):
+		if self.final_data<self.inicio_data:
+			raise ValidationError('Data final menor que a data inicial')					
 
 class Resultado(models.Model):
 	olimpiada = models.ForeignKey(
@@ -97,3 +108,30 @@ class Resultado(models.Model):
 		on_delete=models.CASCADE,
 	)
 	valor = models.IntegerField()
+
+	def clean(self):
+		""" Validacao das regras dos resultados """
+		if timezone.now()<self.olimpiada.inicio_data:
+			raise ValidationError('Essa Olimpíada ainda não começou')
+
+		if timezone.now()>self.olimpiada.final_data:
+			raise ValidationError('Essa Olimpíada já terminou')
+
+		if timezone.now()<self.competicao.inicio_data:
+			raise ValidationError('Essa Competição ainda não começou')
+
+		if timezone.now()>self.competicao.final_data:
+			raise ValidationError('Essa Competição já terminou')
+
+		if self.atleta.sexo != self.competicao.modalidade:
+			raise ValidationError('Atleta na modalidade errada')		
+
+		if Resultado.objects.filter( \
+			olimpiada=self.olimpiada,\
+			competicao=self.competicao,\
+			atleta=self.atleta,\
+			fase=self.fase\
+		).count() > self.competicao.tentativas:
+			raise ValidationError('Este atleta já tem todas as tentativas que a competição permite')					
+		
+
