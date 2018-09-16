@@ -28,4 +28,4 @@ Ou acessar o endpoint:
 http://localhost:8000/api/v1/olimpiada/olimpiadas/
 
 ### Ranking
-http://localhost:8000/api/v1/olimpiada/1/competicao/3/modalidade/M/fase/1/
+http://localhost:8000/api/v1/olimpiada/1/competicao/1/modalidade/M/fase/1/ranking/

@@ -28,7 +28,7 @@ class ResultadoSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('__all__')
 
 class RankingSerializer(serializers.Serializer):
-    class RankingAtletaSerializer(serializers.Serializer):
+    class RankingAtletaSerializer(serializers.Serializer):     
         sobrenome = serializers.CharField()  
         nome = serializers.CharField()  
         apelido = serializers.CharField()  
@@ -40,13 +40,15 @@ class RankingSerializer(serializers.Serializer):
 
     class RankingOlimpiadaSerializer(serializers.Serializer):
         nome = serializers.CharField()
+    
+    class RankingFaseSerializer(serializers.Serializer):
+        nome = serializers.CharField()
 
-    atleta = RankingAtletaSerializer()
-    competicao = RankingCompeticaoSerializer()
-    olimpiada = RankingOlimpiadaSerializer()
-    valor = serializers.CharField()
+    def get_atleta(self, obj):
+        return self.RankingAtletaSerializer(Atleta.objects.get(pk=obj['atleta'])).data        
+
+    atleta = serializers.SerializerMethodField()
+    valor_final = serializers.CharField()
 
 
-
-
-        
+       

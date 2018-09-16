@@ -13,6 +13,6 @@ router.register(r'olimpiadas', views.OlimpiadaViewSet)
 router.register(r'resultados', views.ResultadoViewSet)
 
 urlpatterns = [
-	url(r'^(?P<olimpiada>\d+)/competicao/(?P<competicao>\d+)/modalidade/(?P<modalidade>[MF])/fase/(?P<fase>\d+)/', views.ranking_v1),
+	url(r'^(?P<olimpiada>\d+)/competicao/(?P<competicao>\d+)/modalidade/(?P<modalidade>[MF])/fase/(?P<fase>\d+)/ranking/', views.ranking_v1),
 	url(r'^', include(router.urls)),
 ]
