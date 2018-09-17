@@ -54,7 +54,7 @@ $ python manage.py runserver
 2.3. Preencha a modalidade (Masculino ou Feminino)\
 2.4. Preencha a unidade de pontuação (Metros, kg ou segundos)\
 2.5. Preencha o critério de pontuação (pontua-se mais com o menor ou o maior valor?)\
-2.6. Preencha a quantidade de "tentativas". Quantas tentativas podem ser inputadas no sistema por Atleta nesta competição?\
+2.6. Preencha a quantidade de "tentativas". (Quantas tentativas podem ser inputadas no sistema por Atleta nesta competição?)
 
 3. Crie uma "Fase", clicando no link "Fases" (adicionar)\
 3.1. Preencha o nome da Fase, exemplos: "Classificacao", "Final", "Semifinal" etc\
