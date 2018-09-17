@@ -1,13 +1,15 @@
 # Desafio EV
 O objetivo foi elaborar um sistema coeso e desacoplado, utilizando as boas práticas do DDD.\
 As regras de negócio do enunciado proposto foram executadas de maneira a permitir outras Competições em situações similares, sem a necessidade de reescrita do código, favorecendo o reaproveitamento em outras ocasiões.\
-A url da API disponibilizada para consulta favorece um bom entendimento e leitura, além do versionamento (/api/v1) que é muito importante em migrações e updates;
+A url da API disponibilizada para consulta favorece um bom entendimento e leitura, além do versionamento (/api/v1) que é muito importante em migrações e updates.
 
-# Testado em:
+# Testado em
 - Windows 10
 - Python 3.7
+- pip 18.0
+- virtualenv 16.0.0
 
-# Requerido:
+# Requerido
 certifi==2018.8.24\
 chardet==3.0.4\
 colorama==0.3.9\
@@ -19,10 +21,10 @@ idna==2.7\
 Pygments==2.2.0\
 pytz==2018.5\
 requests==2.19.1\
-urllib3==1.23\
+urllib3==1.23
 
 # INSTALAÇÃO
-Após baixar o projeto no diretorio que desejar\
+Após baixar o projeto no diretorio que desejar
 
 $ cd desafioevfab\
 $ virtualenv env\
@@ -37,7 +39,7 @@ Para testar a aplicação, dentro da raiz do projeto, digite:
 
 $ python manage.py test
 
-# ADMIN
+# ADMIN Django
 Para acessar o admin, basta rodar o comando abaixo e entrar na url padrao do Django (http://localhost:8000/admin), fornecendo seu login e senha:\
 $ python manage.py runserver
 
@@ -60,7 +62,7 @@ $ python manage.py runserver
 4. Preencha os resultados dos Atletas em cada Competição, clicando no link "Resultados" (adicionar)\
 4.1. Selecione de qual Olimpíada estamos falando\
 4.2. Selecione qual a Competição em questão\
-4.3. Selecione o Atleta desejado (Cuidado com o sexo do Atleta e a modalidade da Competição)\
+4.3. Selecione o Atleta desejado\
 4.4. Selecione a fase de que estamos falando\
 4.5. Insira o valor (separador é ",")
 
@@ -101,5 +103,5 @@ Preencha os valores correspondentes na url: (id da olimpiada, id da competicao, 
 
 http://localhost:8000/api/v1/olimpiada/1/competicao/1/modalidade/M/fase/1/ranking/
 
-#Obrigado pela oportunidade
-Obrigado!
+Obrigado pela oportunidade!
+
