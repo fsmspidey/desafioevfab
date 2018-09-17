@@ -1,6 +1,6 @@
 # Desafio EV
 Meu objetivo foi elaborar um sistema coeso e desacoplado, utilizando as boas práticas do DDD.\
-As regras de negócio do enunciado proposto foram executadas de maneira a permitir outras Competições em situações similares sem a necessidade de reescrita do código e até mesmo outras Olimpíadas
+As regras de negócio do enunciado proposto foram executadas de maneira a permitir outras Competições em situações similares sem a necessidade de reescrita do código, favorecendo o reaproveitamento.
 
 # Testado em:
 - Windows 10
@@ -49,7 +49,7 @@ $ python manage.py runserver
 4.4. Selecione a fase de que estamos falando\
 4.5. Insira o valor (separador é ",")
 
-## Inserindo valores pela api
+## Inserindo valores pela API
 ### Atletas
 $ http --auth user:pass POST http://127.0.0.1:8000/api/v1/olimpiada/atletas/ nome=Joao sobrenome=MAGUILA sexo=M nascimento_data=1978-12-28\
 Ou acessar o endpoint:
@@ -86,4 +86,5 @@ Preencha os valores correspondentes na url: (id da olimpiada, id da competicao, 
 
 http://localhost:8000/api/v1/olimpiada/1/competicao/1/modalidade/M/fase/1/ranking/
 
-#Obrigado pela oportunidade!
+#Obrigado pela oportunidade
+:D
