@@ -57,7 +57,7 @@ $ python manage.py runserver
 2.6. Preencha a quantidade de "tentativas". (Quantas tentativas podem ser inputadas no sistema por Atleta nesta competição?)
 
 3. Crie uma "Fase", clicando no link "Fases" (adicionar)\
-3.1. Preencha o nome da Fase, exemplos: "Classificacao", "Final", "Semifinal" etc\
+3.1. Preencha o nome da Fase, exemplos: "Classificacao", "Final", "Semifinal" etc
 
 4. Preencha os resultados dos Atletas em cada Competição, clicando no link "Resultados" (adicionar)\
 4.1. Selecione de qual Olimpíada estamos falando\
