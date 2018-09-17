@@ -72,7 +72,7 @@ class Competicao(models.Model):
 
 	
 class Fase(models.Model):
-	nome = models.CharField(max_length=90)
+	nome = models.CharField(max_length=90, unique=True)
 	def __str__(self):
 		return self.nome
 
@@ -107,6 +107,9 @@ class Resultado(models.Model):
 		on_delete=models.CASCADE,
 	)
 	valor = models.DecimalField(max_digits=8, decimal_places=3)
+	
+	def __str__(self):
+		return "Resultado"
 
 	def clean(self):
 		"""

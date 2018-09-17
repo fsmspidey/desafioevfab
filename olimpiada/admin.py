@@ -13,6 +13,7 @@ class ResultadoAdmin(admin.ModelAdmin):
 	list_display=('atleta','valor','competicao','fase')
 
 admin.site.site_header = 'Desafio EV / Fabricio'
+admin.site.site_url = None
 
 admin.site.register(Atleta)
 admin.site.register(Competicao, CompeticaoAdmin)
