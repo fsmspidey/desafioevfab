@@ -15,7 +15,7 @@ $ env\Scripts\activate\
 $ pip install -r requirements.txt\
 $ python manage.py makemigrations\
 $ python manage.py migrate\
-$ python manage.py createsuperuser\
+$ python manage.py createsuperuser
 
 # Testes
 Para testar a aplicação, dentro da raiz do projeto, digite:
@@ -85,3 +85,5 @@ http://localhost:8000/api/v1/olimpiada/resultados/
 Preencha os valores correspondentes na url: (id da olimpiada, id da competicao, "M" ou "F" em modalidade e id da fase)
 
 http://localhost:8000/api/v1/olimpiada/1/competicao/1/modalidade/M/fase/1/ranking/
+
+#Obrigado pela oportunidade!
