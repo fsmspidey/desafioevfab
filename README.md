@@ -1,10 +1,25 @@
 # Desafio EV
-Meu objetivo foi elaborar um sistema coeso e desacoplado, utilizando as boas práticas do DDD.\
-As regras de negócio do enunciado proposto foram executadas de maneira a permitir outras Competições em situações similares sem a necessidade de reescrita do código, favorecendo o reaproveitamento.
+O objetivo foi elaborar um sistema coeso e desacoplado, utilizando as boas práticas do DDD.\
+As regras de negócio do enunciado proposto foram executadas de maneira a permitir outras Competições em situações similares, sem a necessidade de reescrita do código, favorecendo o reaproveitamento em outras ocasiões.\
+A url da API disponibilizada para consulta favorece um bom entendimento e leitura, além do versionamento (/api/v1) que é muito importante em migrações e updates;
 
 # Testado em:
 - Windows 10
 - Python 3.7
+
+# Requerido:
+certifi==2018.8.24\
+chardet==3.0.4\
+colorama==0.3.9\
+Django==2.1.1\
+django-rest-framework==0.1.0\
+djangorestframework==3.8.2\
+httpie==0.9.9\
+idna==2.7\
+Pygments==2.2.0\
+pytz==2018.5\
+requests==2.19.1\
+urllib3==1.23\
 
 # INSTALAÇÃO
 Após baixar o projeto no diretorio que desejar\
@@ -33,9 +48,9 @@ $ python manage.py runserver
 
 2. Crie uma "Competição", clicando no link "Competições" (adicionar)\
 2.1. Preencha o nome da competição\
-2.2. Preencha a Vigência (Só é permitida a inclusao de dados com a competição em andamento)\
+2.2. Preencha a Vigência (data inicio e fim)\
 2.3. Preencha a modalidade (Masculino ou Feminino)\
-2.4. Preencha a unidade de pontuação (Metros, kg, segundos, etc)\
+2.4. Preencha a unidade de pontuação (Metros, kg ou segundos)\
 2.5. Preencha o critério de pontuação (pontua-se mais com o menor ou o maior valor?)\
 2.6. Preencha a quantidade de "tentativas". Quantas tentativas podem ser inputadas no sistema por Atleta nesta competição?\
 
@@ -87,4 +102,4 @@ Preencha os valores correspondentes na url: (id da olimpiada, id da competicao, 
 http://localhost:8000/api/v1/olimpiada/1/competicao/1/modalidade/M/fase/1/ranking/
 
 #Obrigado pela oportunidade
-:D
+Obrigado!
